@@ -45,7 +45,7 @@ jobs:
           uses: actions/download-artifact@v4
           with:
             name: static-output
-            path: ./out
+            path: ./kuroshibaz.dev
 
         - name: SSH into server and Deploy
           uses: appleboy/scp-action@v0.1.7
