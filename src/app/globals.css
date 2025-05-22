@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -28,10 +28,10 @@ body {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-family: "Silkscreen", sans-serif;
+  font-family: 'Silkscreen', sans-serif;
 }
 
 .normal-text {
   /*font-size: 16px;*/
-  font-family: "Pixelify Sans", sans-serif;
+  font-family: 'Pixelify Sans', sans-serif;
 }
