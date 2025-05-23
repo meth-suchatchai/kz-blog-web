@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { loginAsyncThunk } from '../auth/action';
+import { loginAsyncThunk } from './action';
 
 export type AuthState = {
   isAuthenticated: boolean;

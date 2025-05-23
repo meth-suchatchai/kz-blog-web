@@ -23,6 +23,7 @@ import {
 import SidebarDrawer from './Drawer';
 import { useState } from 'react';
 import Image from 'next/image';
+import DarkMode from '../Darkmode/darkmode';
 
 const drawerWidth = 240;
 
@@ -59,7 +60,6 @@ export default function NavigationMenu({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
-  // const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleDrawerToggle = () => {
@@ -109,12 +109,13 @@ export default function NavigationMenu({
                 />
                 Dashboard
               </Typography>
+              <Box>
+                <DarkMode />
+              </Box>
               <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="K" src="/static/images/avatar/2.jpg" />
-                  </IconButton>
-                </Tooltip>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="K" />
+                </IconButton>
                 <Menu
                   sx={{ mt: '45px' }}
                   id="menu-appbar"

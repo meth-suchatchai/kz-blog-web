@@ -2,6 +2,7 @@
 
 import { createTheme } from '@mui/material/styles';
 import { Pixelify_Sans, Silkscreen } from 'next/font/google';
+import {} from '@mui/material/colors/';
 
 const pixelifySans = Pixelify_Sans({
   variable: '--font-pixelify',
@@ -16,7 +17,7 @@ const silkscreen = Silkscreen({
 
 const theme = createTheme({
   colorSchemes: { light: true, dark: true },
-  defaultColorScheme: 'dark',
+  defaultColorScheme: 'light',
   cssVariables: {
     colorSchemeSelector: 'class',
   },
@@ -25,6 +26,13 @@ const theme = createTheme({
   },
   components: {},
   direction: 'rtl',
+  palette: {
+    primary: {
+      main: '#ffffff',
+      light: '#000000',
+      dark: '#ffffff',
+    },
+  },
 });
 
 export default theme;

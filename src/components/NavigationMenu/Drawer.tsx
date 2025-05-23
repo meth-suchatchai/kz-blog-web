@@ -139,8 +139,8 @@ export default function SidebarDrawer(props: DrawerProps) {
           </Typography>
           <Divider />
           {props.groups?.map((group) => (
-            <>
-              <List key={group.key}>
+            <div key={group.key}>
+              <List>
                 {props.menu?.map(
                   (item) =>
                     item.groupKey === group.key && (
@@ -182,7 +182,7 @@ export default function SidebarDrawer(props: DrawerProps) {
                 )}
               </List>
               <Divider />
-            </>
+            </div>
           ))}
         </Box>
       </Drawer>
