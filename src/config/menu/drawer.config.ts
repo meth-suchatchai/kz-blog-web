@@ -1,12 +1,37 @@
-export const config = {
-  width: 240,
-  menu: [
-    {
-      id: '',
-      name: 'Home',
-    },
-  ],
-};
+import {
+  DrawerItemProps,
+  DrawerMenuGroup,
+} from '@/components/NavigationMenu/Drawer';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import BookIcon from '@mui/icons-material/Book';
+
+export const drawerGroup: DrawerMenuGroup[] = [
+  {
+    key: 'dashboard',
+    name: 'main',
+  },
+  {
+    key: 'crm',
+    name: 'CRM',
+  },
+];
+
+export const drawerMenu: DrawerItemProps[] = [
+  {
+    id: 'main',
+    name: 'Dashboard',
+    icon: DashboardIcon,
+    groupKey: 'dashboard',
+    path: '/admin',
+  },
+  {
+    id: 'blog',
+    name: 'Blog',
+    icon: BookIcon,
+    groupKey: 'crm',
+    path: '/admin/blog',
+  },
+];
 
 export const profileMenu = [
   {
@@ -20,19 +45,5 @@ export const profileMenu = [
   {
     id: 'logout',
     name: 'Logout',
-  },
-];
-
-export const drawerMain = [
-  {
-    id: 'home',
-    name: 'Home',
-  },
-];
-
-export const drawerCRM = [
-  {
-    id: 'blog',
-    name: 'Blog',
   },
 ];

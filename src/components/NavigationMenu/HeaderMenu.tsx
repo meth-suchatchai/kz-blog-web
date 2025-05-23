@@ -13,12 +13,18 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
-import { config, profileMenu } from '@/config/menu/drawer.config';
+import {
+  drawerGroup,
+  drawerMenu,
+  profileMenu,
+} from '@/config/menu/drawer.config';
 import SidebarDrawer from './Drawer';
 import { useState } from 'react';
+import Image from 'next/image';
 
-const drawerWidth = config.width || 240;
+const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -53,117 +59,114 @@ export default function NavigationMenu({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  // const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleDrawerToggle = () => {
     setOpen((prevState) => !prevState);
   };
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Container maxWidth="xl">
-          <Toolbar>
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{ flexGrow: 1 }}
-              component="div"
-            >
-              Dashboard
-            </Typography>
-            {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    <>
+      <Box>
+        <CssBaseline />
+        <AppBar position="sticky" open={open}>
+          <Container maxWidth="xl">
+            <Toolbar>
               <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
                 color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerToggle}
+                edge="start"
+                sx={[
+                  {
+                    marginRight: 2,
+                  },
+                  open && { display: 'none' },
+                ]}
               >
-                M
+                <MenuIcon />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{ display: { xs: 'block', md: 'none' } }}
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{ flexGrow: 1, display: 'flex' }}
+                component="div"
               >
-                {config.menu.map((item) => (
-                  <MenuItem key={item.id}>
-                    <Typography sx={{ textAlign: 'center' }}>
-                      {item.name}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box> */}
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="K" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {profileMenu.map((item) => (
-                  <MenuItem key={item.id} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: 'center' }}>
-                      {item.name}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-      <SidebarDrawer
-        menu={config.menu}
-        width={config.width}
-        open={open}
-        onDrawerToggle={handleDrawerToggle}
-      >
-        {children}
-      </SidebarDrawer>
-    </Box>
+                <Image
+                  src="/shiba-logo-tp.png"
+                  alt="logo"
+                  width="35"
+                  height="35"
+                />
+                Dashboard
+              </Typography>
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="K" src="/static/images/avatar/2.jpg" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {profileMenu.map((item) => (
+                    <MenuItem key={item.id} onClick={handleCloseUserMenu}>
+                      <Typography sx={{ textAlign: 'center' }}>
+                        {item.name}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+        <SidebarDrawer
+          menu={drawerMenu}
+          groups={drawerGroup}
+          width={240}
+          open={open}
+          onDrawerToggle={handleDrawerToggle}
+        />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            px: open ? 3 : 10,
+            py: 3,
+            ml: open ? `${drawerWidth}px` : 0,
+            transition: (theme) =>
+              theme.transitions.create('margin', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+              }),
+          }}
+        >
+          {children}
+        </Box>
+      </Box>
+    </>
   );
 }
